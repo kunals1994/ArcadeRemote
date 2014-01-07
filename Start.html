@@ -1,0 +1,37 @@
+<!DOCTYLE html>
+<script type="text/javascript">
+var num=0;
+players=[];
+var oldLog = console.log;
+var lastLog;
+console.log = function () {
+    lastLog = arguments;
+    oldLog.apply(console, arguments);
+};
+window.moteio_config = {
+  api_version: '0.1',
+  app_name: 'Dev Doc',
+  blocks: [
+    {
+      type: 'buttons',
+      data: [
+        {
+          press: function () {
+          	if(players[0]==lastLog[0].uuid)
+          		{
+          			return;
+          		}
+          	players.push(lastLog[0].uuid);
+            num=num+1;
+            if(num==2){
+            	window.location = "/Users/Kunal/Desktop/javascript-pong-master/index.html?p1="+players[0]+"&p2="+players[1]
+            }
+          },
+          icon: 'off'
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script type="text/javascript" src="http://mote.io:80/js/plugin.js"></script>
